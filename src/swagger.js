@@ -65,6 +65,9 @@ const doc = {
             $name: "Jhon Doe",
             $age: 29,
             about: ""
+        },
+        UsersList: {
+            $name: "Jhon Doe"
         }
     }
 }

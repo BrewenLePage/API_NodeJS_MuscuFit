@@ -2,7 +2,7 @@ module.exports = app => {
     const users = require('/users-controller');
     const router = require('express').Router();
 
-    router.get("/users-list", users);
+    router.get("/users-list", users.userList);
 
     router.put("/users-update",users)
 
