@@ -1,6 +1,6 @@
 const firestore = require('../config/firebase-config');
 
-export.subs = async (req,res) => {
+exports.subscription = async (req,res) => {
     /*
     #swagger.tags = ['Subscribe']
     #swagger.description = 'Service to add a subscription to a user'
@@ -8,36 +8,35 @@ export.subs = async (req,res) => {
     #swagger.security = [{
             "bearerAuth": []
     }]
-
+    */
+    const {
+        userId,typeSubscription
+    } = req.body;
+/*
     #swagger.responses[201] = {
         description: 'Subscription successfully create',
         schema: {
-          type: 'array',
-            items: {
-                $ref: '#/definitions/Subscription'
-            }
+          "Id of the users" : "userId",
+          "type of the subscription" : "Prenium"
         }
     }
 
-    #swagger.responses[401] = {
-        description: 'Invalid token',
-        schema:
-            type: string
-                message : "You don't have the permission"
-    }
+     #swagger.responses[401] = {
+                    description: 'Invalid token',
+                    schema: {
+        "message": "You don't have the permission",
+       }
+     }
 
-    #swagger.responses[500] = {
-        description: 'Server Error',
-        schema:
-            type: string
-            message : "Internal Serveur Error"
+     #swagger.responses[500] = {
+                   description: 'Server Error',
+                   schema: {
+       "message": "Internal server error",
+      }
       }
     */
 
 
-    const {
-        userId,typeSubscription
-    } = req.body;
 
     firestore.collection("subscription").doc(docRef.id).update({
         "userId": userId,

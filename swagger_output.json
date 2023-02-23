@@ -108,7 +108,11 @@
     },
     "/register": {
       "post": {
-        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Service to add a new user in the database",
+        "description": "Service to register a new user",
         "parameters": [
           {
             "name": "body",
@@ -156,8 +160,8 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Service to register new user",
-        "description": "Service to register new user into MuscuFit",
+        "summary": "Service to register new admin",
+        "description": "Service to register new Admin into MuscuFit",
         "parameters": [
           {
             "name": "body",
@@ -212,6 +216,220 @@
           }
         ]
       }
+    },
+    "/subscription": {
+      "post": {
+        "tags": [
+          "Subscribe"
+        ],
+        "summary": "Service to add a subscription to a user in the database",
+        "description": "Service to add a subscription to a user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "typeSubscription": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Subscription successfully create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Id of the users": {
+                  "type": "string",
+                  "example": "userId"
+                },
+                "type of the subscription": {
+                  "type": "string",
+                  "example": "Prenium"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "You don't have the permission"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users-update": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Service to update a user in the database",
+        "description": "Service to update a user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update ok"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "You don't have the permission"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users-delete": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Service to delete a user in the database",
+        "description": "Service to delete a user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "uid": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete ok"
+          },
+          "401": {
+            "description": "Invalid token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "You don't have the permission"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -226,51 +444,9 @@
           "type": "number",
           "example": 29
         },
-        "parents": {
-          "type": "object",
-          "properties": {
-            "father": {
-              "type": "string",
-              "example": "Simon Doe"
-            },
-            "mother": {
-              "type": "string",
-              "example": "Marie Doe"
-            }
-          }
-        },
-        "diplomas": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "school": {
-                "type": "string",
-                "example": "XYZ University"
-              },
-              "year": {
-                "type": "number",
-                "example": 2020
-              },
-              "completed": {
-                "type": "boolean",
-                "example": true
-              },
-              "internship": {
-                "type": "object",
-                "properties": {
-                  "hours": {
-                    "type": "number",
-                    "example": 290
-                  },
-                  "location": {
-                    "type": "string",
-                    "example": "XYZ Company"
-                  }
-                }
-              }
-            }
-          }
+        "adress": {
+          "type": "string",
+          "example": "50 rue des mouettes"
         }
       }
     },
@@ -293,6 +469,18 @@
       "required": [
         "name",
         "age"
+      ]
+    },
+    "UsersList": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        }
+      },
+      "required": [
+        "name"
       ]
     }
   }

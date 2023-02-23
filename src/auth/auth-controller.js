@@ -12,6 +12,12 @@ const JWT_SECRET = process.env.PORT || jsonConfig.jwtSecret;
 const jwtMiddleware = require('./jwt-middleware');
 
 exports.register = async (req, res) => {
+  /*
+    #swagger.tags = ['Auth']
+    #swagger.description = 'Service to register a new user'
+    #swagger.summary = 'Service to add a new user in the database'
+
+    */
     const {
         email, password, firstName, lastName, phoneNumber, address
     } = req.body;
@@ -53,8 +59,8 @@ exports.register = async (req, res) => {
 
 exports.signIn = async (req, res) => {
 // #swagger.tags = ['Auth']
-// #swagger.description = 'Service to register new user into MuscuFit'
-// #swagger.summary = 'Service to register new user'
+// #swagger.description = 'Service to register new Admin into MuscuFit'
+// #swagger.summary = 'Service to register new admin'
     const {
         email, password
     } = req.body;

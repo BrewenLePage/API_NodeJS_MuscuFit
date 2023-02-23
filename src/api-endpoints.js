@@ -1,6 +1,8 @@
 module.exports = function (app) {
     // require("./users/users.routes")(app);
     require("./auth/auth-routes")(app);
+    require("./subscription/subscription-routes")(app);
+    require("./users/users-routes")(app);
 
     app.get('/users/:id', (req, res) => {
     // To describe API endpoint with swagger inside service, put sharp following by swagger parameter
@@ -40,8 +42,6 @@ module.exports = function (app) {
                required: true,
                schema: { $ref: "#/definitions/AddUser" }
         } */
-
-
 
         const newUser = req.body
 

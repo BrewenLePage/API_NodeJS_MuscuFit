@@ -1,50 +1,101 @@
 const firestore = require('../config/firebase-config');
+const Ajv = require("ajv");
+const ajv = new Ajv();
 
-export.usersList = async (req, res) => {
+exports.usersUpdate = async (req, res) => {
     /*
-    #swagger.tags = ['Users']
-    #swagger.description = 'Service to get a list of all users of the Gym'
-    #swagger.summary = 'Service to get a list of all users from the database'
+    #swagger.tags = ['User']
+    #swagger.description = 'Service to update a user'
+    #swagger.summary = 'Service to update a user in the database'
     #swagger.security = [{
             "bearerAuth": []
     }]
 
     #swagger.responses[200] = {
-        description: 'Return a list of all users',
-        schema: {
-          type: 'array',
-            items: {
-                $ref: '#/definitions/UsersList'
-            }
-        }
+        description: 'Update ok'
     }
 
     #swagger.responses[401] = {
-        description: 'Invalid token',
-        schema:
-            type: string
-                message : "You don't have the permission"
-    }
+                        description: 'Invalid token',
+                        schema: {
+            "message": "You don't have the permission",
+           }
+         }
 
-    #swagger.responses[500] = {
-        description: 'Server Error',
-        schema:
-            type: string
-            message : "Internal Serveur Error"
-      }
+         #swagger.responses[500] = {
+                       description: 'Server Error',
+                       schema: {
+           "message": "Internal server error",
+          }
+          }
     */
 
+    isValid = (schemaValidator, data) => {
+        return ajv.validate(schemaValidator, data);
+    };
+    const data = req.body;
+
+    connexionFunction = async (collection, id) => {
+    const connexion = await firestore.collection(collection).doc(id).get();
+    };
+
+    const users = connexionFunction("Users", data.id);
+
+    if (!users) return res.status(404).send({ message: "User not found" });
+
+    const newUser = {
+    ...users.data(),
+    ...data,
+    };
+    if (!(await isValid(updateUsersSchema, newUser)))
+    return res.status(400).send({ error: "Something gone wrong" });
     try {
-
-        const usersList = await firestore.collection("users").get();
-        return res.status(200).json(usersList.docs.map((doc) => doc.date()));
-
-    }
-    catch(err){
-
-        console.error(err);
-        return res.status(500).send({
-            "error":"Error from the server, try it later"
-        })
+    await firestore.collection("Users").doc(data.id).update(newUser);
+    return res.status(200).send({ success: "User updated successfully" });
+    } catch (error) {
+    console.log(err);
+    return res.status(500).send({ error: "Error server" });
     }
 }
+
+exports.usersDelete = async (req, res) => {
+
+    /*
+    #swagger.tags = ['User']
+    #swagger.description = 'Service to delete a user'
+    #swagger.summary = 'Service to delete a user in the database'
+    #swagger.security = [{
+            "bearerAuth": []
+    }]
+
+    #swagger.responses[200] = {
+        description: 'Delete ok'
+    }
+
+    #swagger.responses[401] = {
+                        description: 'Invalid token',
+                        schema: {
+            "message": "You don't have the permission",
+           }
+         }
+
+         #swagger.responses[500] = {
+                       description: 'Server Error',
+                       schema: {
+           "message": "Internal server error",
+          }
+          }
+    */
+
+    const uid = req.body.uid;
+
+    try {
+        await firestore.collection("Users").doc(uid).delete();
+        return res.status(200).send({ message: "Users successfully delete." });
+    }
+    catch (error)
+    {
+        console.error(error);
+        return res.status(500).send({ error: 'Error server' });
+    }
+};
