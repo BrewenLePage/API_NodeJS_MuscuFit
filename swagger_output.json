@@ -13,10 +13,10 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost:8181/Muscufit/api/v1",
+  "host": "https://muscufitapi.onrender.com",
   "servers": [
     {
-      "url": "http://localhost:8181/Muscufit/api/v1/"
+      "url": "https://muscufitapi.onrender.com"
     }
   ],
   "basePath": "/",
@@ -408,6 +408,62 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "You don't have the permission"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users-list": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Service to get all users in the database",
+        "description": "Service to get all users",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Good"
           },
           "401": {
             "description": "Invalid token",
