@@ -46,18 +46,23 @@ const doc = {
         {
             "name": "User",
             "description": "Endpoints"
+        },
+        {
+            "name": "Susbcribe",
+            "description": "Endpoints"
         }
     ],
     definitions: {
         User: {
-            name: "Jhon Doe",
-            age: 29,
+            firstName: "Jhon",
+            lastName: "Doe",
+            email: "anpch@example.com",
+            password: "password",
             adress: "50 rue des mouettes"
         },
-        AddUser: {
-            $name: "Jhon Doe",
-            $age: 29,
-            about: ""
+        Subscription: {
+            uid: "uid",
+            typeSubscription: "premium",
         }
     }
 }
