@@ -318,7 +318,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                "uid": {
                   "example": "any"
                 }
               }
@@ -328,9 +328,6 @@
         "responses": {
           "200": {
             "description": "Update ok"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "401": {
             "description": "Invalid token",

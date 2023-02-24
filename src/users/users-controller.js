@@ -30,35 +30,33 @@ exports.usersUpdate = async (req, res) => {
           }
     */
 
-    isValid = (schemaValidator, data) => {
-        return ajv.validate(schemaValidator, data);
-    };
     const data = req.body;
 
-    connexionFunction = async (collection, id) => {
-    const connexion = await firestore.collection(collection).doc(id).get();
-    return connexion.data();
-    
+    connexionFunction = async (collection, uid) => {
+    const user = await firestore.collection(collection).doc(uid).get();
+    if (!user.exists){
+        return false;
+    }
+    return user;
     };
 
-    const users = connexionFunction("users", data.id);
-
-    if (!users) return res.status(404).send({ message: "User not found" });
+    const user = connexionFunction("users", data.uid);
+    if (!user){
+        return res.status(404).send({ message: "User not found" });
+    }
 
     const newUser = {
-    ...users.data(),
+    ...user.data,
     ...data,
     };
-    if (!(await isValid(updateUsersSchema, newUser)))
-    return res.status(400).send({ error: "Something gone wrong" });
+
     try {
-    await firestore.collection("Users").doc(data.id).update(newUser);
-    return res.status(200).send({ success: "User updated successfully" });
+        await firestore.collection("users").doc(data.uid).update(newUser);
+        return res.status(200).send({ success: "User updated successfully" });
     } catch (error) {
-    console.log(err);
-    return res.status(500).send({ error: "Error server" });
+        return res.status(500).send({ error: "Error server" });
     }
-}
+};
 
 exports.usersDelete = async (req, res) => {
 
