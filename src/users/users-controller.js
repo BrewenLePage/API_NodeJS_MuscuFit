@@ -1,6 +1,4 @@
 const firestore = require('../config/firebase-config');
-const Ajv = require("ajv");
-const ajv = new Ajv();
 
 exports.usersUpdate = async (req, res) => {
     /*
