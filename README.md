@@ -1,10 +1,12 @@
 # API_NodeJS_MuscuFit
 
-##Intro
+## Intro
+
 Welcome to this NODEJS API for managing the users of a gym. This is a course project.
 You can find a swagger to test all the methods in the project.
 
-##The project now
+## The project now
+
 A this point, the project work in local with the configuration for it 
 In swagger.js just put
 ```
