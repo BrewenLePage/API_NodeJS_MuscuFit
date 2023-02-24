@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.delete("/users-delete", jwtMiddleware.checkJwtTokenMiddleware, users.usersDelete)
 
+    router.get("/users-list", jwtMiddleware.checkJwtTokenMiddleware, users.usersList)
+
     // -- To declare the prefix path of your API service
     app.use("/Muscufit/api/v1", router)
 }
