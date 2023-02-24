@@ -20,9 +20,9 @@ const doc = {
     servers: [
         {
             //local
-            // url: "localhost:8181/Muscufit/api/v1",
+            url: "localhost:8181/Muscufit/api/v1",
             //production
-            url: "muscufitapi.onrender.com/api/v1/",
+            // url: "muscufitapi.onrender.com/api/v1/",
         }
     ],
     //local
