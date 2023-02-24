@@ -13,16 +13,20 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "muscufitapi.onrender.com",
+  "host": "localhost:8181/Muscufit/api/v1",
   "servers": [
     {
-      "url": "https://muscufitapi.onrender.com/api/v1/"
+      "url": "localhost:8181/Muscufit/api/v1"
     }
   ],
   "basePath": "/",
   "tags": [
     {
       "name": "User",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Susbcribe",
       "description": "Endpoints"
     }
   ],
@@ -509,13 +513,21 @@
     "User": {
       "type": "object",
       "properties": {
-        "name": {
+        "firstName": {
           "type": "string",
-          "example": "Jhon Doe"
+          "example": "Jhon"
         },
-        "age": {
-          "type": "number",
-          "example": 29
+        "lastName": {
+          "type": "string",
+          "example": "Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "anpch@example.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
         },
         "adress": {
           "type": "string",
@@ -523,26 +535,18 @@
         }
       }
     },
-    "AddUser": {
+    "Subscription": {
       "type": "object",
       "properties": {
-        "name": {
+        "uid": {
           "type": "string",
-          "example": "Jhon Doe"
+          "example": "uid"
         },
-        "age": {
-          "type": "number",
-          "example": 29
-        },
-        "about": {
+        "typeSubscription": {
           "type": "string",
-          "example": ""
+          "example": "premium"
         }
-      },
-      "required": [
-        "name",
-        "age"
-      ]
+      }
     }
   }
 }

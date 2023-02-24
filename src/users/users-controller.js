@@ -128,10 +128,10 @@ exports.usersList = async (req, res) => {
           }
           }
     */
-
+    
     try {
-        const users = await firestore.collection("users").getAll();
-        return res.status(200).send(users.docs);
+        const users = await firestore.collection("users").get();
+        return res.status(200).send(users.docs.map(doc => doc.data()));
     } catch (error) {
         return res.status(500).send({ error: 'Error server' });
     }
