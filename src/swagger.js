@@ -30,6 +30,7 @@ const doc = {
     //production
     host: "muscufitapi.onrender.com",
     basePath: "/",
+    schemes: ["http", "https"],
     consumes: ['application/json'],
     produces: ['application/json'],
     securityDefinitions: {
