@@ -242,6 +242,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "201": {
             "description": "Subscription successfully create",
             "schema": {
@@ -275,6 +278,9 @@
                 "name": "main"
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Server Error",

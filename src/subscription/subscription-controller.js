@@ -35,23 +35,22 @@ exports.subscription = async (req,res) => {
       }
       }
     */
-
-
-
-    firestore.collection("subscription").doc(docRef.id).update({
-        "userId": userId,
-        "typeSusbcription": typeSubscription,
-    }).then(function (docRef){
-        let messageReturn = "Subscription added to a User"
-
-        console.log(messageReturn);
-
-        return res.status(201).send({
-            "userId": userId,
-            "typeSubscription": typeSubscription,
-        });
-    }).catch(function (error){
-        return res.status(500).send({"error": "Something went wrong :("})
-    });
+    
+    const subs = req.body;
+    
+  
+    try {
+        if(subs){
+            firestore.collection("subscription").add({
+                "userId": userId,
+                "typeSusbcription": typeSubscription,
+            });
+            return res.status(200).send({ message: "Subscription successfully add." });
+        }else{
+            return res.status(403).send({message: "Access forbidden"});
+        }
+    }catch{
+        return res.status(500).send({error: "Something went wrong :("})
+    };
 
 }
