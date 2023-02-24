@@ -37,9 +37,11 @@ exports.usersUpdate = async (req, res) => {
 
     connexionFunction = async (collection, id) => {
     const connexion = await firestore.collection(collection).doc(id).get();
+    return connexion.data();
+    
     };
 
-    const users = connexionFunction("Users", data.id);
+    const users = connexionFunction("users", data.id);
 
     if (!users) return res.status(404).send({ message: "User not found" });
 
@@ -90,8 +92,12 @@ exports.usersDelete = async (req, res) => {
     const uid = req.body.uid;
 
     try {
-        await firestore.collection("Users").doc(uid).delete();
-        return res.status(200).send({ message: "Users successfully delete." });
+        if (uid){
+            await firestore.collection("users").doc(uid).delete();
+            return res.status(200).send({ message: "User successfully delete." });
+        }else{
+            return res.status(400).send({message: "User doesn't exist"})
+        }
     }
     catch (error)
     {

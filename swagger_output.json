@@ -308,6 +308,11 @@
         "description": "Service to update a user",
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -377,6 +382,11 @@
         "description": "Service to delete a user",
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -392,6 +402,9 @@
         "responses": {
           "200": {
             "description": "Delete ok"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Invalid token",
@@ -469,18 +482,6 @@
       "required": [
         "name",
         "age"
-      ]
-    },
-    "UsersList": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "Jhon Doe"
-        }
-      },
-      "required": [
-        "name"
       ]
     }
   }
