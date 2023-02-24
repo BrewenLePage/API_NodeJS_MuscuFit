@@ -16,3 +16,5 @@ In swagger.js just put
     host: "muscufitapi.onrender.com",
 ```
 at the line 25 to 28.
+
+But it's not work remotely
