@@ -13,10 +13,10 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "https://muscufitapi.onrender.com",
+  "host": "muscufitapi.onrender.com",
   "servers": [
     {
-      "url": "https://muscufitapi.onrender.com"
+      "url": "https://muscufitapi.onrender.com/api/v1/"
     }
   ],
   "basePath": "/",

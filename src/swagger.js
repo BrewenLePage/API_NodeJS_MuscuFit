@@ -22,13 +22,13 @@ const doc = {
             //local
             //url: "localhost:8181/Muscufit/api/v1",
             //production
-            url: "https://muscufitapi.onrender.com",
+            url: "https://muscufitapi.onrender.com/api/v1/",
         }
     ],
     //local
     //host: "localhost:8181/Muscufit/api/v1",
     //production
-    host: "https://muscufitapi.onrender.com",
+    host: "muscufitapi.onrender.com",
     basePath: "/",
     consumes: ['application/json'],
     produces: ['application/json'],
