@@ -18,3 +18,5 @@ In swagger.js just put
 at the line 25 to 28.
 
 But it's not work remotely
+After some hours of research i find this topic, that said that the problem come from Render and their servers.
+[https://community.render.com/t/404-error-while-deploying-a-node-web-service/814]
