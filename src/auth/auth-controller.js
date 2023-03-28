@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const jsonConfig = require('../../ressources/json/config.json');
 
-const JWT_SECRET = process.env.PORT || jsonConfig.jwtSecret;
+const JWT_SECRET = process.env.JWT_SECRET || jsonConfig.jwtSecret;
 
 const jwtMiddleware = require('./jwt-middleware');
 
