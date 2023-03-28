@@ -10,5 +10,5 @@ module.exports = app => {
     router.get("/me", jwtMiddleware.checkJwtTokenMiddleware, auth.getCurrentUser)
 
     // -- To declare the prefix path of your API service
-    app.use("/Muscufit/api/v1", router);
+    app.use("/muscufit/api/v1", router);
 }

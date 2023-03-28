@@ -6,5 +6,5 @@ module.exports = app => {
 
 
     // -- To declare the prefix path of your API service
-    app.use("/Muscufit/api/v1", router);
+    app.use("/muscufit/api/v1", router);
 }
