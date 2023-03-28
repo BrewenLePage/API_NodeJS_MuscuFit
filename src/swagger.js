@@ -19,13 +19,13 @@ const doc = {
     },
     servers: [
         {
-            url: "localhost:8181/Muscufit/api/v1"
+            url: "localhost:8181/muscufit/api/v1"
         }
     ],
     //local
     // host: "localhost:8181/Muscufit/api/v1",
     //production
-    host: "muscufitapi.onrender.com",
+    host: "muscufitapi.onrender.com/muscufit/api/v1",
     basePath: "/",
     schemes: ["http", "https"],
     consumes: ['application/json'],
