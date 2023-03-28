@@ -19,7 +19,7 @@
       "url": "muscufitapi.onrender.com/muscufit/api/v1"
     }
   ],
-  "basePath": "/",
+  "basePath": "/muscufit/api/v1/",
   "tags": [
     {
       "name": "User",
