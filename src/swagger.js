@@ -22,9 +22,6 @@ const doc = {
             url: "muscufitapi.onrender.com/muscufit/api/v1"
         }
     ],
-    //local
-    //host: "localhost:8181",
-    //production
     host: "muscufitapi.onrender.com",
     basePath: "/muscufit/api/v1/",
     schemes: ["http", "https"],
